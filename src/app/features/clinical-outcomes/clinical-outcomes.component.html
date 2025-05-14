@@ -1,0 +1,25 @@
+<section class="section">
+  <h1>Clinical Outcomes</h1>
+
+  <div class="metadata" *ngIf="metadata$ | async as metadata">
+    <p><strong>Active Patients:</strong> {{ metadata.activePatients }}</p>
+    <p><strong>Reporting Period:</strong> {{ metadata.reportingPeriod }}</p>
+    <p><strong>Last Updated:</strong> {{ metadata.lastUpdated }}</p>
+  </div>
+
+  <div class="chart-section">
+    <div class="chart-container">
+      <app-time-in-range-chart
+        *ngIf="timeInRange$ | async as timeData"
+        [data]="timeData"
+      ></app-time-in-range-chart>
+    </div>
+
+    <div class="chart-container">
+      <app-gmi-chart
+        *ngIf="gmi$ | async as gmiData"
+        [data]="gmiData"
+      ></app-gmi-chart>
+    </div>
+  </div>
+</section>
